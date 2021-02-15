@@ -8,7 +8,7 @@ body {
    min-height: 100vh;
    padding: 0;
    margin: 0;
-   /* Utilisation de flex pour centrer le contenu dans le conteneur */
+   /* Display settings */
    display: flex;
    justify-content: center;
    align-items: center;
@@ -21,7 +21,9 @@ body {
    grid-template-columns: 1fr 1fr;
    /* Configuration de la taille de la boite avec marge intérieure */
    width: 920px;
+   min-width: 920px;
    height: 510px;
+   min-height: 510px;
    box-sizing: border-box;
    padding: 30px;
    /* Ajout de la couleur de fond et des arrondis au coins de la boite */
@@ -34,12 +36,14 @@ body {
    font-weight: 700;
 }
 
+/* Alignement en colonne des questions de la FAQ */
 .accordionMenu {
    display: flex;
    flex-direction: column;
    justify-content: space-between;
 }
 
+/* Mise en forme des questions de la FAQ */
 .accordion {
    background-color: transparent;
    border: none;
@@ -54,50 +58,109 @@ body {
    font-weight: 700;
 }
 
+/* Mise en place de la petite flèche à droite des questions */
 .accordion::after {
-   content: url(/images/icon-arrow-down.svg);
+   content: url(../images/icon-arrow-down.svg);
    float: right;
    transition-duration: 0.5s;
    transition-property: transform;
 }
 
+/* Rotation de la flèche au déploiement de la réponse */
 .active::after {
-   content: url(/images/icon-arrow-down.svg);
+   content: url(../images/icon-arrow-down.svg);
    transform: rotate(180deg);
 }
 
+/* Mise en forme des réponses non affichées */
 .panel {
-   padding: 0 18px;
    background-color: transparent;
    display: none;
    overflow: hidden;
 }
 
+/* Coloration du texte des réponses */
+.panel p {
+   color: grey;
+}
+
+/* Mise en forme des réponses affichées */
 .panel.show {
-   padding: 0 18px;
    background-color: transparent;
    display: block;
    overflow: hidden;
 }
 
+/* Placement du dé dans la partie image */
 .box {
-   z-index: 100;
-   transform: translate(98px);
+   display: none;
 }
 
+/* Suppresion des parties qui dépassent de la boite */
 #containerBox {
    overflow: hidden;
 }
 
+/* Placement de l'illustration du bureau */
 .desk {
    transform: translate(-110px, 25px);
    width: 500px;
    z-index: 1;
 }
 
+/* Placement de l'illustration derrière le bureau */
 .bgPattern {
    transform: translate(-110px);
    margin-top: -380px;
    width: 500px;
    z-index: -1;
+}
+
+@media (max-width: 1024px) and (min-width: 921px) {
+   #containerBox {
+      transform: scale(0.95);
+   }
+}
+
+@media (max-width: 920px) and (min-width: 769px) {
+   #containerBox {
+      transform: scale(0.80);
+   }
+}
+
+@media (max-width: 768px) and (min-width: 486) {
+   /* Mise en page mobile */
+   body {
+      height: 100vh;
+   }
+
+   #containerBox {
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.5);
+      height: 800px;
+      overflow: visible;
+   }
+
+   #imgside {
+      max-height: 240px;
+   }
+
+   #textSide h1 {
+      text-align: center;
+      font-size: 44px;
+   }
+
+   .desk {
+      transform: translate(180px, -250px);
+      width: 500px;
+      z-index: 1; 
+   }
+
+   .bgPattern {
+      transform: translate(180px, -670px);
+      margin-top: 0px;
+      width: 500px;
+      z-index: -1;
+   }
 }
